@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Breast Cancer Prediction</title>
+</head>
+<body>
+  <h2>Breast Cancer Prediction (2 = Benign, 4 = Malignant)</h2>
+
+  <form action="/predict" method="POST">
+    <label>ClumpThickness:</label><input name="ClumpThickness" type="number" min="1" max="10" required><br>
+    <label>UniformityCellSize:</label><input name="UniformityCellSize" type="number" min="1" max="10" required><br>
+    <label>UniformityCellShape:</label><input name="UniformityCellShape" type="number" min="1" max="10" required><br>
+    <label>MarginalAdhesion:</label><input name="MarginalAdhesion" type="number" min="1" max="10" required><br>
+    <label>SingleEpithelialCellSize:</label><input name="SingleEpithelialCellSize" type="number" min="1" max="10" required><br>
+    <label>BareNuclei:</label><input name="BareNuclei" type="number" min="1" max="10" required><br>
+    <label>BlandChromatin:</label><input name="BlandChromatin" type="number" min="1" max="10" required><br>
+    <label>NormalNucleoli:</label><input name="NormalNucleoli" type="number" min="1" max="10" required><br>
+    <label>Mitoses:</label><input name="Mitoses" type="number" min="1" max="10" required><br><br>
+
+    <button type="submit">Predict</button>
+  </form>
+
+  {% if result %}
+    <h3>Result: {{ result }}</h3>
+  {% endif %}
+</body>
+</html>
