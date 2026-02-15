@@ -2,26 +2,128 @@
 <html>
 <head>
   <title>Breast Cancer Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 500px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .benign {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .malignant {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
 </head>
 <body>
-  <h2>Breast Cancer Prediction (2 = Benign, 4 = Malignant)</h2>
 
-  <form action="/predict" method="POST">
-    <label>ClumpThickness:</label><input name="ClumpThickness" type="number" min="1" max="10" required><br>
-    <label>UniformityCellSize:</label><input name="UniformityCellSize" type="number" min="1" max="10" required><br>
-    <label>UniformityCellShape:</label><input name="UniformityCellShape" type="number" min="1" max="10" required><br>
-    <label>MarginalAdhesion:</label><input name="MarginalAdhesion" type="number" min="1" max="10" required><br>
-    <label>SingleEpithelialCellSize:</label><input name="SingleEpithelialCellSize" type="number" min="1" max="10" required><br>
-    <label>BareNuclei:</label><input name="BareNuclei" type="number" min="1" max="10" required><br>
-    <label>BlandChromatin:</label><input name="BlandChromatin" type="number" min="1" max="10" required><br>
-    <label>NormalNucleoli:</label><input name="NormalNucleoli" type="number" min="1" max="10" required><br>
-    <label>Mitoses:</label><input name="Mitoses" type="number" min="1" max="10" required><br><br>
+  <div class="container">
+    <h2>Breast Cancer Prediction</h2>
+    <p style="text-align:center; color:#666;">
+      Enter values between 1 and 10
+    </p>
 
-    <button type="submit">Predict</button>
-  </form>
+    <form action="/predict" method="POST">
+      <label>Clump Thickness</label>
+      <input name="ClumpThickness" type="number" min="1" max="10" required>
 
-  {% if result %}
-    <h3>Result: {{ result }}</h3>
-  {% endif %}
+      <label>Uniformity of Cell Size</label>
+      <input name="UniformityCellSize" type="number" min="1" max="10" required>
+
+      <label>Uniformity of Cell Shape</label>
+      <input name="UniformityCellShape" type="number" min="1" max="10" required>
+
+      <label>Marginal Adhesion</label>
+      <input name="MarginalAdhesion" type="number" min="1" max="10" required>
+
+      <label>Single Epithelial Cell Size</label>
+      <input name="SingleEpithelialCellSize" type="number" min="1" max="10" required>
+
+      <label>Bare Nuclei</label>
+      <input name="BareNuclei" type="number" min="1" max="10" required>
+
+      <label>Bland Chromatin</label>
+      <input name="BlandChromatin" type="number" min="1" max="10" required>
+
+      <label>Normal Nucleoli</label>
+      <input name="NormalNucleoli" type="number" min="1" max="10" required>
+
+      <label>Mitoses</label>
+      <input name="Mitoses" type="number" min="1" max="10" required>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+      <div class="result {% if 'Benign' in result %}benign{% else %}malignant{% endif %}">
+        {{ result }}
+      </div>
+    {% endif %}
+
+  </div>
+
 </body>
 </html>
